@@ -1,7 +1,7 @@
 // quiz2.rs
 //
 // This is a quiz for the following sections:
-// - Strings
+// - Strings 
 // - Vecs
 // - Move semantics
 // - Modules
@@ -20,7 +20,6 @@
 //
 // No hints this time!
 
-// I AM NOT DONE
 
 pub enum Command {
     Uppercase,
@@ -32,12 +31,30 @@ mod my_module {
     use super::Command;
 
     // TODO: Complete the function signature!
-    pub fn transformer(input: ???) -> ??? {
+    pub fn transformer(input: Vec<(String,Command)>) -> Vec<String>{
         // TODO: Complete the output declaration!
-        let mut output: ??? = vec![];
-        for (string, command) in input.iter() {
-            // TODO: Complete the function body. You can do it!
-        }
+        let mut output= vec![];
+        for (string, command) in input.iter() {  
+            let mut s;
+            match command {  
+                Command::Uppercase => {  
+                    s = string.to_uppercase();  
+                }  
+                Command::Trim => {  
+                    s =string.trim().to_string();
+ 
+                }  
+                Command::Append(n) => {  
+                    let mut string_clone = string.clone(); 
+                    let x:i32=*n as i32; 
+                    for _ in 0..x {  
+                        string_clone.push_str("bar");  
+                    }  
+                    s = (*string_clone).to_string(); 
+                }  
+            }  
+            output.push(s); 
+        }  
         output
     }
 }
@@ -45,7 +62,7 @@ mod my_module {
 #[cfg(test)]
 mod tests {
     // TODO: What do we need to import to have `transformer` in scope?
-    use ???;
+    use crate::my_module::transformer;
     use super::Command;
 
     #[test]
