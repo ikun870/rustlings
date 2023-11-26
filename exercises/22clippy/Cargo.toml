@@ -1,7 +1,0 @@
-[package]
-name = "self.name"
-version = "0.0.1"
-edition = "2021"
-[[bin]]
-name = "self.name"
-path = "self.name.rs"
